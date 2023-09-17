@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #121212; /* Dark background color */
+            color: #fff; /* Light text color */
+        }
+
+        .container {
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+            background: #1E1E1E; /* Dark container background color */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container header {
+            font-size: 1.5rem;
+            color: #fff; /* Light text color */
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .container .form {
+            margin-top: 30px;
+        }
+
+        .form .input-box {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .input-box input,
+        .input-box select,
+        .input-box textarea {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+            color: #fff; /* Light text color */
+            background: #333; /* Dark input background color */
+            border: 1px solid #555; /* Dark border color */
+            border-radius: 6px;
+            padding: 0 15px;
+            margin-top: 8px;
+        }
+
+        /* Increase the size of the description text box */
+        .input-box textarea {
+            height: 120px;
+        }
+
+        .form .column {
+            display: flex;
+            column-gap: 15px;
+        }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 500px) {
+            .form .column {
+                flex-wrap: wrap;
+            }
+        }
+
+        .form .gender-option,
+        .form .gender {
+            display: flex;
+            align-items: center;
+            column-gap: 50px;
+            flex-wrap: wrap;
+            row-gap: 15px;
+        }
+
+        .form .gender {
+            column-gap: 5px;
+        }
+
+        .gender input,
+        .gender label {
+            cursor: pointer;
+        }
+
+        .form .gender-box {
+            margin-top: 20px;
+        }
+
+        .gender-box h3 {
+            color: #fff; /* Light text color */
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .form button {
+            height: 55px;
+            width: 100%;
+            color: #fff; /* Light text color */
+            font-size: 1rem;
+            border: none;
+            margin-top: 30px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 400;
+            transition: all 0.2s ease;
+            background-color: #007BFF; /* Dark blue button background color */
+        }
+
+        .form button:hover {
+            background-color: #0056b3; /* Dark blue button background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <header>Contact Form</header>
+        <form action="#" class="form" id="appointmentForm">
+            <div class="input-box">
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name" id="name" name="name" required />
+            </div>
+            <div class="input-box">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="Enter your phone number" id="phoneNumber" name="phoneNumber" required />
+            </div>
+            <div class="input-box">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" id="email" name="email" required />
+            </div>
+            <div class="input-box">
+                <label>Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Description</label>
+                <textarea id="description" name="description" rows="6" placeholder="Enter a description" required></textarea>
+            </div>
+            <button type="submit" id="submitAppointment">
+                Book Appointment
+            </button>
+        </form>
+    </section>
+</body>
+</html>

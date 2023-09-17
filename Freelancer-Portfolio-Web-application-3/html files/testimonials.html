@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background color */
+            color: #fff; /* Light text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1, h2 {
+            color: #fff; /* Light text color */
+        }
+
+        .carousel-container {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .testimonial-card {
+            width: 100%;
+            height: 100%;
+            background-color: #333; /* Dark background color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform-origin: center right;
+            position: absolute;
+        }
+
+        .testimonial-card:nth-child(even) {
+            background-color: #1E1E1E; /* Dark background color */
+        }
+
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .review-button {
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        /* Animation styles */
+        .content {
+            font-family: 'Lato', sans-serif;
+            font-size: 35px;
+            line-height: 40px;
+            color: #ecf0f1;
+        }
+
+        .content__container {
+            font-weight: 600;
+            overflow: hidden;
+            height: 40px;
+            padding: 0 40px;
+        }
+
+        .content__container:before,
+        .content__container:after {
+            position: absolute;
+            top: 0;
+            color: #16a085;
+            font-size: 42px;
+            line-height: 40px;
+        }
+
+        .content__container:before {
+            content: '[';
+            left: 0;
+        }
+
+        .content__container:after {
+            content: ']';
+            position: absolute;
+            right: 0;
+        }
+
+        .content__container__text {
+            display: inline;
+            float: left;
+            margin: 0;
+        }
+
+        .content__container__list {
+            margin-top: 0;
+            padding-left: 110px;
+            text-align: left;
+            list-style: none;
+        }
+
+        .content__container__list__item {
+            line-height: 40px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testimonials</h1>
+
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="testimonial-card">
+                <img src="avatar1.jpg" alt="User 1">
+                <p>Testimonial 1 text here.</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="avatar2.jpg" alt="User 2">
+                <p>Testimonial 2 text here.</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="avatar3.jpg" alt="User 3">
+                <p>Testimonial 3 text here.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
+
+    <p>Click <a href="#reviews" class="review-button">here</a> to see reviews below.</p>
+
+    <div id="reviews">
+        <h2>Reviews</h2>
+        <ul>
+            <li>Review 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Review 2: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+            <li>Review 3: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</li>
+            <li>Review 4: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
+            <li>Review 5: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+        </ul>
+    </div>
+
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        let currentIndex = 0;
+
+        function rotateCarousel() {
+            const angle = currentIndex * -120;
+            carousel.style.transform = `rotateY(${angle}deg)`;
+        }
+
+        function showNext() {
+            currentIndex++;
+            if (currentIndex >= testimonialCards.length) {
+                currentIndex = 0;
+            }
+            rotateCarousel();
+        }
+
+        function showPrevious() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = testimonialCards.length - 1;
+            }
+            rotateCarousel();
+        }
+
+        nextBtn.addEventListener('click', showNext);
+        prevBtn.addEventListener('click', showPrevious);
+    </script>
+</body>
+</html>

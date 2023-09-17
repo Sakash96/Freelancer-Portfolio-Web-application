@@ -1,0 +1,126 @@
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the navbar */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+/* Style the title on the left */
+.navbar-title {
+    float: left;
+    margin-left: 20px;
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+/* Style the list that contains the links on the right */
+.navbar-links {
+    float: right;
+    margin-right: 20px;
+    list-style: none;
+}
+
+/* Style each individual link */
+.navbar-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Hover effect for links */
+.navbar-links a:hover {
+    color: #ffcc00;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the container blocks for projects */
+.project-container {
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #1E1E1E;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+/* Hover effect for the project container */
+.project-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Style the project name */
+.project-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007BFF;
+    transition: color 0.2s;
+}
+
+/* Hover effect for the project name */
+.project-container:hover .project-name {
+    color: #ffcc00;
+}
+
+/* Style the project description */
+.project-description {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+/* Hover effect for the project description */
+.project-container:hover .project-description {
+    color: #fff;
+}
+
+/* Style the button */
+.project-button {
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Hover effect for the button */
+.project-container:hover .project-button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Style the button link */
+.project-button a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for the button */
+.project-button a:hover {
+    background-color: #0056b3;
+}
