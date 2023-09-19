@@ -3,131 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css files/contact.css" rel="stylesheet" />
     <title>Appointment Form</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: #121212; /* Dark background color */
-            color: #fff; /* Light text color */
-        }
-
-        .container {
-            position: relative;
-            max-width: 700px;
-            width: 100%;
-            background: #1E1E1E; /* Dark container background color */
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .container header {
-            font-size: 1.5rem;
-            color: #fff; /* Light text color */
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .container .form {
-            margin-top: 30px;
-        }
-
-        .form .input-box {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .input-box input,
-        .input-box select,
-        .input-box textarea {
-            position: relative;
-            height: 50px;
-            width: 100%;
-            outline: none;
-            font-size: 1rem;
-            color: #fff; /* Light text color */
-            background: #333; /* Dark input background color */
-            border: 1px solid #555; /* Dark border color */
-            border-radius: 6px;
-            padding: 0 15px;
-            margin-top: 8px;
-        }
-
-        /* Increase the size of the description text box */
-        .input-box textarea {
-            height: 120px;
-        }
-
-        .form .column {
-            display: flex;
-            column-gap: 15px;
-        }
-
-        /* RESPONSIVE */
-        @media screen and (max-width: 500px) {
-            .form .column {
-                flex-wrap: wrap;
-            }
-        }
-
-        .form .gender-option,
-        .form .gender {
-            display: flex;
-            align-items: center;
-            column-gap: 50px;
-            flex-wrap: wrap;
-            row-gap: 15px;
-        }
-
-        .form .gender {
-            column-gap: 5px;
-        }
-
-        .gender input,
-        .gender label {
-            cursor: pointer;
-        }
-
-        .form .gender-box {
-            margin-top: 20px;
-        }
-
-        .gender-box h3 {
-            color: #fff; /* Light text color */
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
-
-        .form button {
-            height: 55px;
-            width: 100%;
-            color: #fff; /* Light text color */
-            font-size: 1rem;
-            border: none;
-            margin-top: 30px;
-            cursor: pointer;
-            border-radius: 6px;
-            font-weight: 400;
-            transition: all 0.2s ease;
-            background-color: #007BFF; /* Dark blue button background color */
-        }
-
-        .form button:hover {
-            background-color: #0056b3; /* Dark blue button background color on hover */
-        }
-    </style>
 </head>
 <body>
     <section class="container">
@@ -161,6 +38,66 @@
                 Book Appointment
             </button>
         </form>
+        <div id="tokenMessage" style="display: none; color: green;">Booked</div>
     </section>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDVxAif1yJJaKhmvPEDtjrlwc8p-WlO-98",
+          authDomain: "freelancerproject-9b210.firebaseapp.com",
+          projectId: "freelancerproject-9b210",
+          storageBucket: "freelancerproject-9b210.appspot.com",
+          messagingSenderId: "758391948368",
+          appId: "1:758391948368:web:5781b0e3bdd5dc66623d55",
+          measurementId: "G-6C0XYZ9B1Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const form = document.getElementById("appointmentForm");
+        const tokenMessage = document.getElementById("tokenMessage");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const email = document.getElementById("email").value;
+            const gender = document.getElementById("gender").value;
+            const description = document.getElementById("description").value;
+
+            try {
+                // Add a new document to the "appointments" collection
+                const docRef = await addDoc(collection(db, "appointments"), {
+                    name: name,
+                    phoneNumber: phoneNumber,
+                    email: email,
+                    gender: gender,
+                    description: description,
+                });
+
+                console.log("Document written with ID: ", docRef.id);
+
+                // Display the token message
+                tokenMessage.style.display = "block";
+
+                // Redirect to home.html after a delay (e.g., 2 seconds)
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 2000); // 2000 milliseconds = 2 seconds
+
+            } catch (error) {
+                console.error("Error adding document: ", error);
+
+                // You can add code here to show an error message to the user
+            }
+        });
+    </script>
 </body>
 </html>
