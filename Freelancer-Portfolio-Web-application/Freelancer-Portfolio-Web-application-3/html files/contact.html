@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css files/contact.css" rel="stylesheet" />
+    <title>Appointment Form</title>
+</head>
+<body>
+    <section class="container">
+        <header>Contact Form</header>
+        <form action="#" class="form" id="appointmentForm">
+            <div class="input-box">
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name" id="name" name="name" required />
+            </div>
+            <div class="input-box">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="Enter your phone number" id="phoneNumber" name="phoneNumber" required />
+            </div>
+            <div class="input-box">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" id="email" name="email" required />
+            </div>
+            <div class="input-box">
+                <label>Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Description</label>
+                <textarea id="description" name="description" rows="6" placeholder="Enter a description" required></textarea>
+            </div>
+            <button type="submit" id="submitAppointment">
+                Book Appointment
+            </button>
+        </form>
+        <div id="tokenMessage" style="display: none; color: green;">Booked</div>
+    </section>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDVxAif1yJJaKhmvPEDtjrlwc8p-WlO-98",
+          authDomain: "freelancerproject-9b210.firebaseapp.com",
+          projectId: "freelancerproject-9b210",
+          storageBucket: "freelancerproject-9b210.appspot.com",
+          messagingSenderId: "758391948368",
+          appId: "1:758391948368:web:5781b0e3bdd5dc66623d55",
+          measurementId: "G-6C0XYZ9B1Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const form = document.getElementById("appointmentForm");
+        const tokenMessage = document.getElementById("tokenMessage");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const email = document.getElementById("email").value;
+            const gender = document.getElementById("gender").value;
+            const description = document.getElementById("description").value;
+
+            try {
+                // Add a new document to the "appointments" collection
+                const docRef = await addDoc(collection(db, "appointments"), {
+                    name: name,
+                    phoneNumber: phoneNumber,
+                    email: email,
+                    gender: gender,
+                    description: description,
+                });
+
+                console.log("Document written with ID: ", docRef.id);
+
+                // Display the token message
+                tokenMessage.style.display = "block";
+
+                // Redirect to home.html after a delay (e.g., 2 seconds)
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 2000); // 2000 milliseconds = 2 seconds
+
+            } catch (error) {
+                console.error("Error adding document: ", error);
+
+                // You can add code here to show an error message to the user
+            }
+        });
+    </script>
+</body>
+</html>
