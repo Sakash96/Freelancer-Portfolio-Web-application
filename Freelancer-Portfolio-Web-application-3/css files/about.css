@@ -75,6 +75,7 @@ body {
     padding: 20px;
     text-align: center;
     width: 20%; /* Adjust the width to fit all boxes on the same line */
+    min-width: 200px; /* Set a minimum width for the boxes */
     background-color: #222; /* Dark background color for boxes */
     color: #fff; /* Light text color for boxes */
     margin: 10px; /* Space between boxes */
