@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css files/testimonials.css" rel="stylesheet" />
+    <title>Testimonials</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-title">NIGHT STUDIES GROUP</div>
+        <ul class="navbar-links">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="portfolio.html">PORTFOLIO</a></li>
+            <li><a href="testimonials.html">TESTIMONIALS</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </div>
+    <div id="new-testimonial">
+       
+        <input type="text" id="testimonial-input" placeholder="Enter your testimonial">
+        <button id="add-button" onclick="addTestimonial()">Add Testimonial</button>
+        
+    </div>
+    <h1>Customer Testimonials</h1>
+    <button id="view-more-button" onclick="nextTestimonial()">View More</button>
+    <div class="testimonial-container active" id="testimonial1">
+        <p class="testimonial-text">Web Developer Job Review:
+            "This web developer consistently delivers high-quality code and solutions. Their attention to detail and problem-solving skills are commendable. They work well independently and as part of a team, making them a valuable asset to our projects."</p>
+        <button class="remove-button" onclick="removeTestimonial(this)">Remove</button>
+    </div>
+    <div class="testimonial-container" id="testimonial2">
+        <p class="testimonial-text">Web Developer Job Review:
+            "This web developer consistently delivers high-quality code and solutions. Their attention to detail and problem-solving skills are commendable. They work well independently and as part of a team, making them a valuable asset to our projects."
+            </p>
+        <button class="remove-button" onclick="removeTestimonial(this)">Remove</button>
+    </div>
+    <div class="testimonial-container" id="testimonial3">
+        <p class="testimonial-text">Web Developer Job Review:
+            "This web developer is a true professional with a strong work ethic. They are proactive in identifying and fixing issues, ensuring our websites run smoothly. Their strong communication skills and teamwork make them an integral part of our development team."
+            </p>
+        <button class="remove-button" onclick="removeTestimonial(this)">Remove</button>
+    </div>
+
+    <script>
+        let currentTestimonialIndex = 1;
+        const testimonials = document.querySelectorAll('.testimonial-container');
+        const testimonialInput = document.getElementById('testimonial-input');
+
+        function nextTestimonial() {
+            testimonials[currentTestimonialIndex - 1].classList.remove('active');
+            currentTestimonialIndex++;
+            if (currentTestimonialIndex > testimonials.length) {
+                currentTestimonialIndex = 1;
+            }
+            testimonials[currentTestimonialIndex - 1].classList.add('active');
+        }
+
+        function addTestimonial() {
+            const newTestimonialText = testimonialInput.value;
+            if (newTestimonialText.trim() !== '') {
+                const newTestimonialContainer = document.createElement('div');
+                newTestimonialContainer.className = 'testimonial-container';
+                newTestimonialContainer.innerHTML = `
+                    <p class="testimonial-text">${newTestimonialText}</p>
+                    <button class="remove-button" onclick="removeTestimonial(this)">Remove</button>
+                `;
+                document.body.insertBefore(newTestimonialContainer, document.getElementById('new-testimonial'));
+                testimonialInput.value = '';
+
+                // Trigger a reflow to enable the animation
+                newTestimonialContainer.style.opacity = '1';
+                newTestimonialContainer.style.transform = 'rotateX(0deg)';
+            }
+        }
+
+        function removeTestimonial(button) {
+            const containerToRemove = button.parentElement;
+            containerToRemove.style.opacity = '0';
+            containerToRemove.style.transform = 'rotateX(90deg)';
+            setTimeout(function () {
+                containerToRemove.remove();
+            }, 500);
+        }
+
+        // Show the first testimonial initially
+        testimonials[currentTestimonialIndex - 1].classList.add('active');
+    </script>
+</body>
+</html>

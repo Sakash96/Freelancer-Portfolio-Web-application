@@ -1,0 +1,132 @@
+/* Reset default margin and padding for body and unordered lists */
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the navbar */
+.navbar {
+    background-color: #333;
+    position: fixed; /* Set the navbar to a fixed position */
+    top: 0; /* Place it at the top of the page */
+    width: 100%; /* Make it full-width */
+    z-index: 100; /* Ensure it's above other elements */
+    padding: 10px 0;
+}
+
+/* Style the title on the left */
+.navbar-title {
+    float: left;
+    margin-left: 20px;
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+/* Style the list that contains the links on the right */
+.navbar-links {
+    float: right;
+    margin-right: 20px;
+    list-style: none;
+}
+
+/* Style each individual link in the navbar */
+.navbar-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Hover effect for links in the navbar */
+.navbar-links a:hover {
+    color: #ffcc00;
+}
+
+/* Style the main content area */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #121212; /* Dark background color for the entire page */
+    padding-top: 50px; /* Adjust the padding to push content below the navbar */
+}
+
+/* Create a container for content with max width and padding */
+.container {
+    display: flex;
+    justify-content: space-between; /* Add space between boxes horizontally */
+    align-items: center;
+    max-width: 1000px; /* Limit the container width */
+    padding: 20px;
+}
+
+/* Style individual content boxes */
+.box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    width: 20%; /* Adjust the width to fit all boxes on the same line */
+    min-width: 200px; /* Set a minimum width for the boxes */
+    background-color: #222; /* Dark background color for boxes */
+    color: #fff; /* Light text color for boxes */
+    margin: 10px; /* Space between boxes */
+    border-radius: 10px; /* Rounded corners for boxes */
+}
+
+/* Make images within boxes responsive */
+.box img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style headings and paragraphs within boxes */
+.box h2 {
+    margin: 10px 0;
+}
+
+.box p {
+    margin: 10px 0;
+}
+
+/* Style a button class within boxes */
+.box a.button {
+    display: block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px auto;
+}
+
+/* Typewriter animation for headings */
+.typewriter-text {
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    white-space: nowrap;
+    letter-spacing: 0.15em;
+    animation:
+        typing 3s steps(30, end),
+        blink-caret 0.5s step-end infinite;
+        color:white;
+}
+
+/* Keyframes for typewriter animation */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
